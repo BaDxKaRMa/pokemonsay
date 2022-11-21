@@ -41,7 +41,7 @@ fi
 
 pokemon_images=$(
 	cat "$scrap_folder/$bulbapedia_page_name" | \
-	gsed -nr 's;^.*<img alt="(.*)" src="//(cdn.bulbagarden.net/upload/.*\.png)" width="40" height="40" />.*$;\1=\2;p' \
+    sed -nr 's;^.*<img alt="(.*)" src="(\/\/archives\.bulbagarden\.net\/media\/upload\/thumb\/.*\.png)".*\/><\/a><\/td>;\1=\2;p' \
 )
 
 IFS=$'\n'
@@ -51,7 +51,7 @@ for line in $pokemon_images; do
 	pokemon_url="${line#*=}"
 
 	# Unescape HTML characters... Damn "Farfetch&#39;d".
-	pokemon_name=$(echo "$pokemon_name" | gsed "s/&#39;/'/")
+	pokemon_name=$(echo "$pokemon_name" | sed "s/&#39;/'/")
 
 	# If wget is interrupted by a SIGINT or something, it will
 	# leave a broken file. Let's remove it and exit in case we
@@ -60,5 +60,5 @@ for line in $pokemon_images; do
 	trap "rm $scrap_folder/$pokemon_name.png; echo Download of $pokemon_name was cancelled; exit" 1 2 15
 
 	echo "  > Downloading '$pokemon_name' from '$pokemon_url' to '$scrap_folder/$pokemon_name.png' ..."
-	wget "$pokemon_url" -O "$scrap_folder/$pokemon_name.png" -q
+	wget "http:$pokemon_url" -O "$scrap_folder/$pokemon_name.png" -q
 done
