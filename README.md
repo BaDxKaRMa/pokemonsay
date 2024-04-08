@@ -1,5 +1,4 @@
-pokemonsay
-==========
+# pokemonsay
 
 ![You should try pokemonsay!](example.png)
 
@@ -20,7 +19,7 @@ If you want to rebuild everything in the repository, you will also need [`img2xt
 Keep in mind that `pokemonsay` will only work if you have `cowsay` installed and available in your `$PATH`. To install `pokemonsay` run these commands in a terminal window:
 
 ```bash
-$ git clone http://github.com/possatti/pokemonsay
+$ git clone http://github.com/badxkarma/pokemonsay
 $ cd pokemonsay
 $ ./install.sh
 ```
@@ -34,7 +33,7 @@ It may be necessary to logout and login back again to have `pokemonsay` in you `
 You can install `pokemonsay` through Homebrew. It is pretty straightforward:
 
 ```sh
-$ brew tap possatti/possatti
+$ brew tap badxkarma/badxkarma
 $ brew install pokemonsay
 ```
 
